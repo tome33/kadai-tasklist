@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 
 @Entity
+
 @NamedQueries({
     @NamedQuery(
             name = "getAllTasks",
@@ -20,7 +21,7 @@ import javax.persistence.Table;
             )
 })
 
-@Table(name = "tasklist")
+@Table(name = "tasks")
 
 public class Task {
 
@@ -37,6 +38,7 @@ public class Task {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
+
 
     public Integer getId() {
         return id;
