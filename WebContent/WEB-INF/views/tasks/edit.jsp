@@ -4,9 +4,8 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
 
-        <c:choose>      <!-- 条件分岐開始 -->
+        <c:choose>
 
-            <!-- タスク内容のデータが空欄でない場合（ちゃんとデータがある時） -->
             <c:when test="${task != null}">
                 <h2>id : ${task.id} のタスク内容の編集ページ</h2>
 
@@ -29,11 +28,10 @@
                 </script>
             </c:when>
 
-            <!-- タスク内容のデータが空欄の時の表示 -->
             <c:otherwise>
                  <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
 
-        </c:choose>     <!-- 条件分岐終了 -->
+        </c:choose>
     </c:param>
 </c:import>

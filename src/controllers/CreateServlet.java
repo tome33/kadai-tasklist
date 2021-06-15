@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Task;
-import models.validators.MessageValidator;
+import models.validators.TaskValidator;
 import util.DBUtil;
 
 /**
@@ -51,7 +51,7 @@ public class CreateServlet extends HttpServlet {
             tsk.setUpdated_at(currentTime);
 
             // 入力内容のチェック（バリデーション）を実行してエラーがあったら新規登録のフォームに戻る
-            List<String> errors = MessageValidator.validate(tsk);
+            List<String> errors = TaskValidator.validate(tsk);
             if(errors.size() > 0) {
                 em.close();
 
@@ -60,7 +60,7 @@ public class CreateServlet extends HttpServlet {
                 request.setAttribute("task", tsk);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasklist/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/new.jsp");
                 rd.forward(request, response);
             } else {
             // エンティティマネージャ（データベースに保存）

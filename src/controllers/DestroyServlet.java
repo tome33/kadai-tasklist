@@ -45,7 +45,7 @@ public class DestroyServlet extends HttpServlet {
             em.getTransaction().commit();
 
             // フラッシュメッセージをセッションスコープに保存する
-            request.getSession().setAttribute("flush", "更新が完了しました。");
+            request.getSession().setAttribute("flush", "削除が完了しました。");
 
             em.close();							// エンティティマネージャを開放して作業終了
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Task;
-import models.validators.MessageValidator;
+import models.validators.TaskValidator;
 import util.DBUtil;
 
 
@@ -44,7 +44,7 @@ public class UpdateServlet extends HttpServlet {
 
             // セッションスコープからメッセージのIDを取得して
             // 該当のIDのメッセージ1件のみをデータベースから取得
-            Task tsk = em.find(Task.class, (Integer)(request.getSession().getAttribute("message_id")));
+            Task tsk = em.find(Task.class, (Integer)(request.getSession().getAttribute("task_id")));
 
             // フォームの内容を各フィールドに上書き
 
@@ -55,7 +55,7 @@ public class UpdateServlet extends HttpServlet {
             tsk.setUpdated_at(currentTime);       // 更新日時のみ上書き
 
             // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
-            List<String> errors = MessageValidator.validate(tsk);
+            List<String> errors = TaskValidator.validate(tsk);
             if(errors.size() > 0) {
                 em.close();
 
