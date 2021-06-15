@@ -68,10 +68,13 @@ public class UpdateServlet extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 // データベースを更新
-                em.getTransaction().begin();
+                em.getTransaction().begin();		// トランザクションの開始
                 em.getTransaction().commit();
+
+                // フラッシュメッセージをセッションスコープに保存する
                 request.getSession().setAttribute("flush", "更新が完了しました。");
-                em.close();
+
+                em.close();							// エンティティマネージャを開放して作業終了
 
                 // セッションスコープ上の不要になったデータを削除
                 request.getSession().removeAttribute("task_id");

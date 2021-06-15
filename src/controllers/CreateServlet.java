@@ -67,6 +67,10 @@ public class CreateServlet extends HttpServlet {
             em.getTransaction().begin();		// トランザクションの開始
             em.persist(tsk);					// データベースに上のインスタンス化のデータを保存する
             em.getTransaction().commit();		// コミット（トランザクションの処理を一括実行）
+
+            // フラッシュメッセージをセッションスコープに保存する
+            request.getSession().setAttribute("flush", "登録が完了しました。");
+
             em.close();							// エンティティマネージャを開放して作業終了
 
             // インデックスのページへ推移
